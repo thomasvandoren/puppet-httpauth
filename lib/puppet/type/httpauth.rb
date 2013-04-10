@@ -29,6 +29,24 @@ Puppet::Type.newtype(:httpauth) do
        desc "The HTTP password file to be managed. If it doesn't exist it is created."
     end
 
+    newparam(:owner) do
+       desc "The owner of the HTTP password file to be managed. Default to root."
+
+       defaultto "root"
+    end
+
+    newparam(:group) do
+       desc "The group of the HTTP password file to be managed. Default to root."
+
+       defaultto "root"
+    end
+
+    newparam(:mode) do
+       desc "The mode of the HTTP password file to be managed. Default to 0600."
+
+       defaultto "0600"
+    end
+
     newparam(:password) do
        desc "The password in plaintext."
     

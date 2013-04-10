@@ -32,7 +32,7 @@ Puppet::Type.type(:httpauth).provide(:httpauth) do
             return check_passwd(resource[:realm], resource[:name], resource[:password], cp)
         else
             # If the file doesn't exist then create it
-            File.new(resource[:file], "w")
+            File.new(resource[:file], "w", resource[:mode].to_i(8)).chown(Etc.getpwnam(resource[:owner]).uid, Etc.getgrnam(resource[:group]).gid)
             mech(resource[:file])
             return false
         end
