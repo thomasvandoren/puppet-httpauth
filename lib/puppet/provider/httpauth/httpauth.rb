@@ -37,10 +37,11 @@ Puppet::Type.type(:httpauth).provide(:httpauth) do
 
             # Check if the current password matches the proposed password
             if not check_passwd(resource[:realm], resource[:name], resource[:password], cp)
-              return false
+                return false
             # Check that the file has the correct permissions.
             else
-              return check_file()
+                return check_file()
+            end
         end
     end
 
@@ -56,7 +57,8 @@ Puppet::Type.type(:httpauth).provide(:httpauth) do
     # Check file permissions (mode), uid (owner), and gid (group)
     def check_file()
         if not File.exists?(resource[:file])
-          return false
+            return false
+        end
         fstat = File.stat(resource[:file])
         return (fstat.mode.to_s(8).end_with?(resource[:mode]) and
                 fstat.uid == Etc.getpwnam(resource[:owner]).uid and
