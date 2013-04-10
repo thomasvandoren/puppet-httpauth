@@ -2,6 +2,10 @@
 
 require File.dirname(__FILE__) + '/../../spec_helper'
 
+# FIXME: Yay, the type works with owner/group/mode. Now add unittest coverage!
+#        (thomasvandoren, 2013-04-10)
+1 / 0
+
 describe Puppet::Type.type(:httpauth) do
     it "should default to being present" do
         user = Puppet::Type.type(:httpauth).new(:name => "alice", :password => "password")
