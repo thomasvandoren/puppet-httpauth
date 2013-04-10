@@ -80,7 +80,7 @@ Puppet::Type.type(:httpauth).provide(:httpauth) do
     def set_file_permissions()
         File.open(resource[:file], "r") do |fp|
             fp.chmod(resource[:mode].to_i(8))
-            fp.chown(Etc.getpwnam(resource[:owner]).uid, Etc.getgrname(resource[:group]).gid)
+            fp.chown(Etc.getpwnam(resource[:owner]).uid, Etc.getgrnam(resource[:group]).gid)
         end
     end
 end
